@@ -2,6 +2,8 @@
 
 package io.nia.intent
 
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -26,6 +28,51 @@ data object InboxScreen : Screen {
         value class EmailClicked(val id: String) : Event
     }
 }
+
+sealed interface StyleA {
+    data class Text(val title: String) : StyleA
+
+    data class Icon(
+        val title: String,
+        val onClick: () -> Unit,
+    ) : StyleA
+}
+
+
+@Composable
+fun Main() {
+    Component(style = StyleA.Text(""))
+    Component(style = StyleA.Icon("") {})
+}
+
+@Composable
+fun Component(
+    style: StyleA,
+) {
+    Variants(style)
+}
+
+
+@Composable
+private fun Variants(style: StyleA) = when (style) {
+    is StyleA.Text -> Text(text = style.title)
+    is StyleA.Icon -> {
+        IconButton(onClick = style.onClick) {
+            Text(text = style.title)
+        }
+    }
+}
+
+
+// class Content {
+//     @Composable
+//     operator fun invoke(e: InboxScreen.Event): @Composable () -> Unit {
+//         return when (e) {
+//             is InboxScreen.Event.EmailClicked -> { { Text("") } }
+//         }
+//     }
+// }
+
 
 class InboxPresenter(
     private val navigator: Navigator,

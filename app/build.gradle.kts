@@ -1,3 +1,4 @@
+import org.jetbrains.annotations.ApiStatus.Experimental
 
 plugins {
     alias(libs.plugins.android.application)
@@ -37,6 +38,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+
+        freeCompilerArgs += listOf(
+            "-Xcontext-receivers",
+        )
     }
     buildFeatures {
         compose = true
