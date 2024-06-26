@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,8 +20,6 @@ import io.nia.intent.DetailScreen
 import io.nia.intent.InboxPresenter
 import io.nia.intent.InboxScreen
 import io.nia.ui.component.AppBar
-import io.nia.ui.component.EmailDetail
-import io.nia.ui.component.InboxList
 import io.nia.ui.theme.NiaTheme
 
 
@@ -42,17 +39,9 @@ class MainActivity : ComponentActivity() {
             )
             val circuit = Circuit.Builder()
                 .addPresenter<InboxScreen, InboxScreen.State>(presenter)
-                .addUi<InboxScreen, InboxScreen.State> { state, modifier ->
-                    AppBar(navigator, modifier) { innerPadding ->
-                        InboxList(state, modifier.padding(innerPadding))
-                    }
-                }
+                .addUi<InboxScreen, InboxScreen.State> { state, modifier -> AppBar(state, navigator, modifier) }
                 .addPresenterFactory(DetailPresenter.Factory(emailRepository))
-                .addUi<DetailScreen, DetailScreen.State> { state, modifier ->
-                    AppBar(navigator, modifier) { innerPadding ->
-                        EmailDetail(state.email, modifier.padding(innerPadding))
-                    }
-                }
+                .addUi<DetailScreen, DetailScreen.State> { state, modifier -> AppBar(state, navigator, modifier) }
                 .build()
             CircuitCompositionLocals(circuit) {
                 NiaTheme {
