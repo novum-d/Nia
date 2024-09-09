@@ -1,54 +1,51 @@
-
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.nia.android.application)
+    alias(libs.plugins.nia.android.application.compose)
+    alias(libs.plugins.nia.android.application.flavors)
+    alias(libs.plugins.nia.android.application.jacoco)
+    alias(libs.plugins.nia.hilt)
 }
 
 android {
-    namespace = "io.nia"
-    compileSdk = 34
-
     defaultConfig {
         applicationId = "io.nia"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 8
+        versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Custom test runner to set up Hilt dependency graph
+        testInstrumentationRunner = "io.nia.core.testing.NiaTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
     buildTypes {
+        debug {
+            //applicationIdSuffix = NiaBuildType.DEBUG.applicationIdSuffix
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = true
+            //applicationIdSuffix = NiaBuildType.RELEASE.applicationIdSuffix
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            // To publish on the Play store a private signing key is required, but to allow anyone
+            // who clones the code to sign and run the release variant, use the debug signing key.
+            // TODO: Abstract the signing configuration to a separate file to avoid hardcoding this.
+            signingConfig = signingConfigs.named("debug").get()
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-        viewBinding = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+    namespace = "io.nia"
 }
 
 dependencies {
