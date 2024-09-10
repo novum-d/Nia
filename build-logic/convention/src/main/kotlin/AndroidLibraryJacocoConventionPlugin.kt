@@ -1,6 +1,4 @@
 import com.android.build.api.dsl.LibraryExtension
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import io.nia.configureJacoco
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
@@ -16,7 +14,7 @@ class AndroidLibraryJacocoConventionPlugin : Plugin<Project> {
                 enableUnitTestCoverage = true
             }
 
-            configureJacoco(extensions.getByType<LibraryAndroidComponentsExtension>())
+            // configureJacoco(extensions.getByType<LibraryAndroidComponentsExtension>())
         }
     }
 }
