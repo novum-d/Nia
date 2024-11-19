@@ -12,7 +12,7 @@ fun NiaNavHost() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = ForYouRoute
+        startDestination = ForYouRoute,
     ) {
         forYouScreen()
         bookmarksScreen()
