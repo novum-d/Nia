@@ -14,7 +14,7 @@ plugins {
 android {
     defaultConfig {
         applicationId = "io.nia"
-        versionCode = 0
+        versionCode = 1
         versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
         // Custom test runner to set up Hilt dependency graph
