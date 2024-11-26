@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.feature.bookmarks"
+    namespace = "io.nia.feature.bookmarks"
 }
 
 dependencies {
