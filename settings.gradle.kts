@@ -19,3 +19,10 @@ rootProject.name = "Nia"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
+include(":feature:bookmarks")
+include(":feature:foryou")
+include(":feature:search")
+include(":feature:settings")
+include(":feature:interests")
+include(":feature:topic")
+include(":core:designsystem")

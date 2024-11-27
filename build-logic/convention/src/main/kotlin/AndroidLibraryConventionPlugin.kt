@@ -5,7 +5,6 @@ import io.nia.configureGradleManagedDevices
 import io.nia.configureKotlinAndroid
 import io.nia.configurePrintApksTask
 import io.nia.disableUnnecessaryAndroidTests
-import io.nia.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -31,7 +30,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 // The resource prefix is derived from the module name,
                 // so resources inside ":core:module1" must be prefixed with "core_module1_"
                 resourcePrefix =
-                    path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_").lowercase() + "_"
+                    path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
+                        .lowercase() + "_"
             }
             extensions.configure<LibraryAndroidComponentsExtension> {
                 configurePrintApksTask(this)
@@ -41,7 +41,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 add("androidTestImplementation", kotlin("test"))
                 add("testImplementation", kotlin("test"))
 
-                add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
+                // add("implementation", libs.findLibrary("androidx.tracing.ktx").get())
             }
         }
     }
