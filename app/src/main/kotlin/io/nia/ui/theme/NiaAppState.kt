@@ -7,6 +7,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import io.nia.navigation.TopLevelDestination
 
 @Composable
 fun rememberNiaAppState(
@@ -27,4 +28,6 @@ class NiaAppState(
 ) {
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
+
+    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 }
