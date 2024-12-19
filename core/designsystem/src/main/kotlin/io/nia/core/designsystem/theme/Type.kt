@@ -1,4 +1,4 @@
-package io.nia.ui.theme
+package io.nia.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
