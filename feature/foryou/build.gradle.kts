@@ -22,4 +22,7 @@ dependencies {
 
     androidTestImplementation(libs.bundles.androidx.compose.ui.test)
     // androidTestImplementation(projects.core.testing)
+
+    // TODO: Remove this later on living network,data,domain module.
+    implementation(projects.core.model)
 }
