@@ -17,6 +17,7 @@ ksp = "2.0.20-1.0.24"
 room = "2.6.1"
 hilt = "2.51.1"
 appcompat = "1.7.0"
+androidxBrowser = "1.8.0"
 material = "1.12.0"
 androidxNavigation = "2.8.0"
 androidxHiltNavigationCompose = "1.2.0"
@@ -69,6 +70,7 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 # designsystem
+androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "androidxBrowser" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxCompose" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
